@@ -8,9 +8,11 @@ function setRounds(rounds){
     if (rounds % 2 == 0) {
         alert("must be odd");
     }
-    localStorage.setItem("rounds",rounds);
-    localStorage.setItem("played",1);
-    window.location.replace("chooser.html");
+    else {
+        localStorage.setItem("rounds",rounds);
+        localStorage.setItem("played",1);
+        window.location.href = "chooser.html";
+    }
 }
 
 
@@ -18,7 +20,11 @@ function cpuTurn(u){
     let moves = ["r","p","s"];
     let choice = Math.floor(Math.random()*3);
     let c = moves[choice];
-    findWinner(u,c);
+    if (u == c){
+        confirm("We both chose "+u);
+        window.location.replace("chooser.html");
+    }
+    else findWinner(u,c);
 }
 
 function findWinner(u,c){
